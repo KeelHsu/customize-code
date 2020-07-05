@@ -1,0 +1,26 @@
+{
+  "name": "customize-code",
+  "version": "1.0.0",
+  "description": "自己练习的一些代码实现",
+  "private": true,
+  "scripts": {
+    "dev": "npx webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeelHsu/customize-code.git"
+  },
+  "author": "Keel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeelHsu/customize-code/issues"
+  },
+  "homepage": "https://github.com/KeelHsu/customize-code#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
