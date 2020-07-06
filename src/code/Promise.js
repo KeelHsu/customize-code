@@ -5,7 +5,7 @@
 // todo 处理thenable
 
 var PENDING = 'pending';
-var FULFILLED = 'fulfilled';
+var FULFILLED = 'resolved';
 var REJECTED = 'rejected';
 
 function timer(callback) {
