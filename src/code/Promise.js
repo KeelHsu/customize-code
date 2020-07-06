@@ -84,7 +84,7 @@ Promise.reject = function (error) {
 
 Promise.all = function (promises) {
   if (typeof promises !== 'object' || !promises instanceof Array) {
-    throw new TypeError('not an array');
+    return Promise.reject(new TypeError('not an array'));
   }
 
   var length = promises.length,
@@ -111,7 +111,7 @@ Promise.all = function (promises) {
 
 Promise.race = function (promises) {
   if (typeof promises !== 'object' || !promises instanceof Array) {
-    throw new TypeError('not an array');
+    return Promise.reject(new TypeError('not an array'));
   }
 
   return new Promise(function (resolve, reject) {
