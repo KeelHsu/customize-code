@@ -2,8 +2,6 @@
 自定义Promise
 */
 
-// todo 处理thenable
-
 var PENDING = 'pending';
 var FULFILLED = 'resolved';
 var REJECTED = 'rejected';
@@ -12,12 +10,28 @@ function timer(callback) {
   setTimeout(callback, 0);
 }
 
+function isThenable(t) {
+  return (typeof t === 'object' || typeof t === 'function') && typeof t.then === 'function';
+}
+
+function resolveThenable(ctx, thenable) {
+  var resolve = settle.bind(ctx, FULFILLED);
+  var reject = settle.bind(ctx, REJECTED);
+  var _then = thenable.then.bind(thenable, resolve, reject)
+  timer(_then)
+}
+
 function settle(state, result) {
   if (state === PENDING || this.state !== PENDING) {
     return;
   }
-  this.state = state;
-  this.data = result;
+
+  if (state === FULFILLED && isThenable(result)) {
+    resolveThenable(this, result)
+  } else {
+    this.data = result;
+    this.state = state;
+  }
 
   // 这里其实有一点点风险，new Promise的时候如果catch到这里的异常会导致reject，
   // 但是之所以说是一点点风险，是因为只要保证自己的foreach代码和run代码不抛异常就可以，这很好保证，
