@@ -78,6 +78,9 @@ Promise.all = function (promises) {
     times = 0;
 
   return new Promise(function (resolve, reject) {
+    // 传入空数组直接resolve
+    length || resolve([]);
+
     promises.forEach(function (pr, i) {
       pr.then(function (value) {
         results[i] = value;
